@@ -5,10 +5,10 @@ import cv2
 import streamlit as st
 
 # Caricamento del modello
-model = tf.keras.models.load_model('C:/Users/gabri/Downloads/fungi_classifier_model.h5')
+model = tf.keras.models.load_model("https://drive.google.com/file/d/1mk-mrboP63qToO1g6d6FW264E8ynJyfo/view?usp=sharing")
 
 # Caricamento dell'ordine delle classi
-with open('C:/Users/gabri/Downloads/class_labels.txt', 'r') as f:
+with open('class_labels.txt', 'r') as f:
     species_list = [line.strip() for line in f]
 
 # Dizionario con le informazioni sui funghi
