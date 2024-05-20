@@ -11,3 +11,4 @@ pillow
 pathlib
 matplotlib
 python-resize-image
+gdown
