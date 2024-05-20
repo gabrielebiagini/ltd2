@@ -5,8 +5,8 @@ import cv2
 import streamlit as st
 import gdown
 
-# Il link di Google Drive
-url = "https://drive.google.com/file/d/1mk-mrboP63qToO1g6d6FW264E8ynJyfo/view?usp=sharing"
+# Il link di Google Drive corretto
+url = "https://drive.google.com/uc?id=1mk-mrboP63qToO1g6d6FW264E8ynJyfo"
 output = 'model.h5'
 
 # Scarica il modello
