@@ -3,9 +3,17 @@ import numpy as np
 from PIL import Image
 import cv2
 import streamlit as st
+import gdown
 
-# Caricamento del modello
-model = tf.keras.models.load_model("https://drive.google.com/file/d/1mk-mrboP63qToO1g6d6FW264E8ynJyfo/view?usp=sharing")
+# Il link di Google Drive
+url = "https://drive.google.com/file/d/1mk-mrboP63qToO1g6d6FW264E8ynJyfo/view?usp=sharing"
+output = 'model.h5'
+
+# Scarica il modello
+gdown.download(url, output, quiet=False)
+
+# Carica il modello localmente
+model = tf.keras.models.load_model(output)
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
