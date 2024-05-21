@@ -9,7 +9,7 @@ import urllib.request
 import subprocess
 
 if not os.path.isfile('model.h5'):
-    subprocess.run(['curl --output model.h5 "https://github.com/gabrielebiagini/ltd2/blob/main/fungi_classifier_model.h5"], shell=True)
+    subprocess.run(['curl --output model.h5 "https://github.com/gabrielebiagini/ltd2/blob/main/fungi_classifier_model.h5"'], shell=True)
 model = tf.keras.models.load_model('model.h5', compile=False)
 
 # Caricamento dell'ordine delle classi
