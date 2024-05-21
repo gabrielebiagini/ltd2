@@ -20,6 +20,12 @@ def load_model():
         st.write("Download completato.")
     
     return tf.keras.models.load_model(model_path)
+# Carica il modello
+try:
+    model = load_model()
+    st.write("Modello caricato correttamente.")
+except Exception as e:
+    st.write(f"Errore nel caricamento del modello: {e}")
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
