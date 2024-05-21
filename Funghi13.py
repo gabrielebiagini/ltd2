@@ -8,14 +8,24 @@ import os
 import urllib.request
 import subprocess
 
-# Il link di Google Drive corretto
-url = "https://drive.google.com/uc?id=1mk-mrboP63qToO1g6d6FW264E8ynJyfo"
-output = 'model.h5'
+# Funzione per scaricare e caricare il modello
+def load_model():
+    model_url = 'https://github.com/gabrielebiagini/ltd2/raw/main/fungi_classifier_model.h5'
+    model_path = 'fungi_classifier_model.h5'
+    
+    if not os.path.isfile(model_path):
+        st.write(f"Modello non trovato, scaricando da {model_url}...")
+        urllib.request.urlretrieve(model_url, model_path)
+        st.write("Download completato.")
 
-# Scarica il modello
-gdown.download(url, output, quiet=False)
-# Carica il modello localmente
-model = tf.keras.models.load_model(output)
+    return tf.keras.models.load_model(model_path)
+# Carica il modello
+try:
+    model = load_model()
+    st.write("Modello caricato correttamente.")
+except Exception as e:
+    st.write(f"Errore nel caricamento del modello: {e}")
+
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
     species_list = [line.strip() for line in f]
