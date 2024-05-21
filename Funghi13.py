@@ -5,12 +5,21 @@ import cv2
 import streamlit as st
 import gdown
 import os
+import urllib.request
 
-# Verifica se il modello è già presente, altrimenti usa git lfs per scaricarlo
-model_path = 'fungi_classifier_model.h5'
 
-# Caricamento del modello addestrato
-model = tf.keras.models.load_model(model_path)
+
+# Funzione per scaricare e caricare il modello
+def load_model():
+    model_url = 'https://github.com/gabrielebiagini/ltd2/raw/main/fungi_classifier_model.h5'
+    model_path = 'fungi_classifier_model.h5'
+    
+    if not os.path.isfile(model_path):
+        st.write(f"Modello non trovato, scaricando da {model_url}...")
+        urllib.request.urlretrieve(model_url, model_path)
+        st.write("Download completato.")
+    
+    return tf.keras.models.load_model(model_path)
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
