@@ -5,15 +5,9 @@ import cv2
 import streamlit as st
 import gdown
 
-# Il link di Google Drive corretto
-url = "https://drive.google.com/uc?id=1mk-mrboP63qToO1g6d6FW264E8ynJyfo"
-output = 'model.h5'
-
-# Scarica il modello
-gdown.download(url, output, quiet=False)
-
-# Carica il modello localmente
-model = tf.keras.models.load_model(output)
+# Caricamento del modello addestrato
+model_path = 'mushroom_classifier_with_conv.h5'
+model = tf.keras.models.load_model(model_path)
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
