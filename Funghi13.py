@@ -6,7 +6,7 @@ import streamlit as st
 import gdown
 
 # Caricamento del modello addestrato
-model_path = 'mushroom_classifier_with_conv.h5'
+model_path = 'fungi_classifier_model.h5'
 model = tf.keras.models.load_model(model_path)
 
 # Caricamento dell'ordine delle classi
