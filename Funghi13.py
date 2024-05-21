@@ -6,10 +6,11 @@ import streamlit as st
 import gdown
 import os
 import urllib.request
- 
-# Caricamento del modello addestrato
-model_path = 'fungi_classifier_model.h5'
-model = tf.keras.models.load_model(model_path)
+import subprocess
+
+if not os.path.isfile('model.h5'):
+    subprocess.run(['curl --output model.h5 "https://github.com/gabrielebiagini/ltd2/blob/main/fungi_classifier_model.h5"], shell=True)
+model = tf.keras.models.load_model('model.h5', compile=False)
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
