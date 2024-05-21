@@ -6,30 +6,10 @@ import streamlit as st
 import gdown
 import os
 import urllib.request
-
-# Funzione per scaricare e caricare il modello
-def load_model():
-    model_url = 'https://github.com/gabrielebiagini/ltd2/raw/main/fungi_classifier_model.h5'
-    model_path = 'fungi_classifier_model.h5'
-    
-    if not os.path.isfile(model_path):
-        st.write(f"Modello non trovato, scaricando da {model_url}...")
-        urllib.request.urlretrieve(model_url, model_path)
-        st.write("Download completato.")
-    
-    # Verifica se il file è stato scaricato correttamente
-    try:
-        model = tf.keras.models.load_model(model_path)
-        st.write("Modello caricato correttamente.")
-        return model
-    except Exception as e:
-        st.write(f"Errore nel caricamento del modello: {e}")
-        return None
-
-# Carica il modello
-model = load_model()
-if model is None:
-    st.stop()  # Interrompe l'esecuzione se il modello non è stato caricato correttamente
+ 
+# Caricamento del modello addestrato
+model_path = 'fungi_classifier_model.h5'
+model = tf.keras.models.load_model(model_path)
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
