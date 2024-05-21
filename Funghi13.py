@@ -4,6 +4,7 @@ from PIL import Image
 import cv2
 import streamlit as st
 import gdown
+import os
 
 # Verifica se il modello è già presente, altrimenti usa git lfs per scaricarlo
 model_path = 'fungi_classifier_model.h5'
