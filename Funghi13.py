@@ -9,9 +9,6 @@ import os
 # Verifica se il modello è già presente, altrimenti usa git lfs per scaricarlo
 model_path = 'fungi_classifier_model.h5'
 
-if not os.path.exists(model_path):
-    subprocess.run(["git", "lfs", "pull"])
-
 # Caricamento del modello addestrato
 model = tf.keras.models.load_model(model_path)
 
