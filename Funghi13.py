@@ -7,8 +7,6 @@ import gdown
 import os
 import urllib.request
 
-
-
 # Funzione per scaricare e caricare il modello
 def load_model():
     model_url = 'https://github.com/gabrielebiagini/ltd2/raw/main/fungi_classifier_model.h5'
@@ -19,13 +17,19 @@ def load_model():
         urllib.request.urlretrieve(model_url, model_path)
         st.write("Download completato.")
     
-    return tf.keras.models.load_model(model_path)
+    # Verifica se il file è stato scaricato correttamente
+    try:
+        model = tf.keras.models.load_model(model_path)
+        st.write("Modello caricato correttamente.")
+        return model
+    except Exception as e:
+        st.write(f"Errore nel caricamento del modello: {e}")
+        return None
+
 # Carica il modello
-try:
-    model = load_model()
-    st.write("Modello caricato correttamente.")
-except Exception as e:
-    st.write(f"Errore nel caricamento del modello: {e}")
+model = load_model()
+if model is None:
+    st.stop()  # Interrompe l'esecuzione se il modello non è stato caricato correttamente
 
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
