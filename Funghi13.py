@@ -8,10 +8,16 @@ import os
 import urllib.request
 import subprocess
 
-if not os.path.isfile('model.h5'):
-    subprocess.run(['curl --output model.h5 "https://github.com/gabrielebiagini/ltd2/blob/main/fungi_classifier_model.h5"'], shell=True)
-model = tf.keras.models.load_model('model.h5', compile=False)
+# Il link di Google Drive
+url = "https://drive.google.com/file/d/1mk-mrboP63qToO1g6d6FW264E8ynJyfo/view?usp=sharing"
+# Il link di Google Drive corretto
+url = "https://drive.google.com/uc?id=1mk-mrboP63qToO1g6d6FW264E8ynJyfo"
+output = 'model.h5'
 
+# Scarica il modello
+gdown.download(url, output, quiet=False)
+# Carica il modello localmente
+model = tf.keras.models.load_model(output)
 # Caricamento dell'ordine delle classi
 with open('class_labels.txt', 'r') as f:
     species_list = [line.strip() for line in f]
